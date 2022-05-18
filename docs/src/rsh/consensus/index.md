@@ -254,14 +254,7 @@ If you're unsure of what kind of consensus transfer to use, you may want to read
 
 A @{defn("parallel reduce statement")} is written:
 
-@{ref("rsh", "parallelReduce.define")}
-@{ref("rsh", "parallelReduce.invariant")}
-@{ref("rsh", "parallelReduce.while")}
-@{ref("rsh", "parallelReduce.paySpec")}
-@{ref("rsh", "parallelReduce.case")}
-@{ref("rsh", "parallelReduce.api")}
-@{ref("rsh", "parallelReduce.api_")}
-@{ref("rsh", "parallelReduce.timeout")}
+@{ref("rsh", "parallelReduce.define")}@{ref("rsh", "parallelReduce.invariant")}@{ref("rsh", "parallelReduce.while")}@{ref("rsh", "parallelReduce.paySpec")}@{ref("rsh", "parallelReduce.case")}@{ref("rsh", "parallelReduce.api")}@{ref("rsh", "parallelReduce.api_")}@{ref("rsh", "parallelReduce.timeout")}
 ```reach
 const LHS =
   parallelReduce(INIT_EXPR)
@@ -448,14 +441,7 @@ range: 85 - 87
 
 ### {#ref-programs-consensus-token-minting} Token minting
 
-@{ref("rsh", "burn")}
-@{ref("rsh", "Token.burn")}
-@{ref("rsh", "destroy")}
-@{ref("rsh", "Token.destroy")}
-@{ref("rsh", "supply")}
-@{ref("rsh", "Token.supply")}
-@{ref("rsh", "destroyed")}
-@{ref("rsh", "Token.destroyed")}
+@{ref("rsh", "burn")}@{ref("rsh", "Token.burn")}@{ref("rsh", "destroy")}@{ref("rsh", "Token.destroy")}@{ref("rsh", "supply")}@{ref("rsh", "Token.supply")}@{ref("rsh", "destroyed")}@{ref("rsh", "Token.destroyed")}
 ```reach
 require(supply >= 2 * amt);
 const tok = new Token({ name, symbol, url, metadata, supply, decimals });
@@ -633,11 +619,7 @@ For example, a nested mapping: `{!rsh} Map(Address, Map(Address, UInt))`, can be
 
 ### Sets: creation and modification
 
-@{ref("rsh", "Set")}
-@{ref("rsh", "Set.insert")}
-@{ref("rsh", "Set.remove")}
-@{ref("rsh", "Set.member")}
-@{ref("rsh", "Set.Map")}
+@{ref("rsh", "Set")}@{ref("rsh", "Set.insert")}@{ref("rsh", "Set.remove")}@{ref("rsh", "Set.member")}@{ref("rsh", "Set.Map")}
 ```reach
 const bidders = new Set();
 bidders.insert(Alice);
@@ -680,3 +662,7 @@ range: 99 - 99
 
 `{!rsh} s.Map` will return the underlying `{!rsh} Map`, so you can use foldable
 instance methods.
+
+### {#ref-programs-consensus-new-contract} Contract creation
+
+XXX
