@@ -86,7 +86,7 @@ The @{defn("compilation options")} for the DApp may be set by calling `{!rsh} se
 
   See example below:
   ```reach
-  load: hs/t/y/overflow_con.rsh
+  load: /hs/t/y/overflow_con.rsh
   range: 3 - 6
   ```
 

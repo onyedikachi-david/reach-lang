@@ -494,12 +494,12 @@ This value is intended to be a digest of a larger metadata document.
 
 The following examples demonstrate how the details above may be used:
 ```reach
-load: examples/token-decimals/index.rsh
+load: /examples/token-decimals/index.rsh
 range: 14 - 17
 ```
 
 ```reach
-load: examples/mint-basic/index.rsh
+load: /examples/mint-basic/index.rsh
 range: 28 - 33
 ```
 
