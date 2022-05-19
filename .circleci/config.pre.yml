@@ -168,6 +168,55 @@ jobs:
               }
             }]
           }
+  "docs-check-checksums":
+    executor: fake
+    steps:
+    - checkout
+    - workattach
+    - srd_no
+    - run: |
+        cd docs
+        grep -Rw ./src/ -e 'load:' | awk -F ':' '{print $3}' | sed -E 's/ /../' | xargs md5sum | awk '{print $1}' > realMd5s.txt
+        grep -Rw ./src/ -e 'md5:' | awk -F ':' '{print $3}' | sed -E 's/ //' > md5sInDocs.txt
+
+        output=$(cmp realMd5s.txt md5sInDocs.txt)
+        if [ "$?" -ne "0" ]; then
+          problemLine=$(echo $output | sed -E 's/.*line ([0-9]*)/\1/')
+          problemMD5=$(sed -n ${problemLine}p md5sInDocs.txt)
+          programPath=$(grep -B 1 -Rw ./src/ -e $problemMD5 | head -n 1 | awk -F ':' '{print $2}' | sed -E 's/ //')
+          echo "There's a discrepancy in an MD5 checksum."
+          echo
+          echo $programPath
+          echo 'has an actual checksum of'
+          echo $(md5sum "..${programPath}" | awk '{print $1}')
+          echo 'but our documentation says it has an MD5 checksum of'
+          echo $problemMD5
+          exit 1
+          fi;
+    - slack_fail
+    - slack/notify:
+        event: fail
+        channel: 'C02GZSCDD7Y'
+  "docs-equal-loads-and-md5s":
+    executor: fake
+    steps:
+    - checkout
+    - workattach
+    - srd_no
+    - run: |
+        cd docs
+        load_count=$(grep -Rw ./src/ -e 'load:' | wc -l)
+        md5_count=$(grep -Rw ./src/ -e 'md5:' | wc -l)
+        if [ $load_count != $md5_count ]; then
+          echo "Something's not right."
+          echo "load: appears $load_count times in ./src/, but"
+          echo "md5: appears $md5_count times in ./src/"
+          exit 1
+          fi;
+    - slack_fail
+    - slack/notify:
+        event: fail
+        channel: 'C02GZSCDD7Y'
   "sh-check":
     executor: fake
     steps:
@@ -342,12 +391,16 @@ jobs:
 workflows:
   docs:
     jobs:
+    - "docs-check-checksums"
+    - "docs-equal-loads-and-md5s"
     - "docs-render"
     - "docs-deploy":
        filters:
          branches:
            only: master
        requires:
+       - "docs-check-checksums"
+       - "docs-equal-loads-and-md5s"
        - "docs-render"
   build:
     jobs:
