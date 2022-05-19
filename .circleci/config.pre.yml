@@ -176,33 +176,13 @@ jobs:
     - srd_no
     - run: |
         cd docs
-        if [ "1" -ne "0" ]; then
-          echo "Does this output?"
-          fi;
-    - slack_fail
-    - slack/notify:
-        event: fail
-        channel: 'C02GZSCDD7Y'
-  "docs-equal-loads-and-md5s":
-    executor: fake
-    steps:
-    - checkout
-    - workattach
-    - srd_no
-    - run: |
-        cd docs
-        load_count=$(grep -Rw ./src/ -e 'load:' | wc -l)
-        md5_count=$(grep -Rw ./src/ -e 'md5:' | wc -l)
-        if [ $load_count != $md5_count ]; then
-          echo "Something's not right."
-          echo "load: appears $load_count times in ./src/, but"
-          echo "md5: appears $md5_count times in ./src/"
+        if [ "$?" -ne "123" ]; then
+          echo "There's a discrepancy in an MD5 checksum."
+          echo
+          echo 'has an actual checksum of'
+          echo 'but our documentation says it has an MD5 checksum of'
           exit 1
           fi;
-    - slack_fail
-    - slack/notify:
-        event: fail
-        channel: 'C02GZSCDD7Y'
   "sh-check":
     executor: fake
     steps:
@@ -378,7 +358,6 @@ workflows:
   docs:
     jobs:
     - "docs-check-checksums"
-    - "docs-equal-loads-and-md5s"
     - "docs-render"
     - "docs-deploy":
        filters:
@@ -386,7 +365,6 @@ workflows:
            only: master
        requires:
        - "docs-check-checksums"
-       - "docs-equal-loads-and-md5s"
        - "docs-render"
   build:
     jobs:
