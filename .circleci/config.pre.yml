@@ -181,6 +181,10 @@ jobs:
         npm install -g ts-node
         echo
         ts-node scripts/checkChecksums.ts
+    - slack_fail
+    - slack/notify:
+        event: fail
+        channel: 'CMY3E5B3J' # reach-lang
   "sh-check":
     executor: fake
     steps:
