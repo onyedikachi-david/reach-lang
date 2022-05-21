@@ -598,6 +598,7 @@ Example:
 
 ```reach
 load: /hs/t/n/continue.rsh
+md5: 27ee6a16a890c05d6fe16640df03949a
 range: 4 - 9
 ```
 
@@ -608,6 +609,7 @@ Example:
 
 ```reach
 load: /hs/t/y/while_multi_inv.rsh
+md5: ba7262e27a3f5f48720b3fd88dbf16cb
 range: 14 - 24
 ```
 
@@ -2135,6 +2137,7 @@ For example, the code below erroneously puts `{!rsh} didPublish()` before `{!rsh
 
 ``` reach
 load: /hs/t/n/Err_NotAfterFirst.rsh
+md5: 46e1eb604c95c16c2c5dcfeeb5e94aa7
 range: 6 - 10
 ```
 
@@ -2142,11 +2145,13 @@ This error can be corrected by placing `{!rsh} publish` before `{!rsh} didPublis
 
 ```reach
 load: /examples/raffle/index.rsh
+md5: b6632a71c54afc8e1da08f2d6c0dbad3
 range: 35 - 35
 ```
 
 ```reach
 load: /examples/raffle/index.rsh
+md5: b6632a71c54afc8e1da08f2d6c0dbad3
 range: 59 - 65
 ```
 
@@ -2227,6 +2232,7 @@ For example, the program below erroneously uses `{!rsh} Anybody.publish()` witho
 
 ```reach
 load: /hs/t/n/Err_No_Participants.rsh
+md5: cdb92dfbbb05b2f6f9eda2d462140e57
 range: 3 - 9
 ```
 
@@ -2234,11 +2240,13 @@ However, the correct thing to do is to declare at least one `{!rsh} Participant`
 
 ```reach
 load: /examples/api-call/index.rsh
+md5: 5bb3b74980f2ba84d75c68edc5b9e4e5
 range: 4 - 7
 ```
 
 ```reach
 load: /examples/api-call/index.rsh
+md5: 5bb3b74980f2ba84d75c68edc5b9e4e5
 range: 47 - 49
 ```
 

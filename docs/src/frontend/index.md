@@ -223,6 +223,7 @@ Example:
 
 ```js
 load: /examples/ganache/index.mjs
+md5: cca336d85844697eb44884226f9d2ce0
 range: 10-13
 ```
 
@@ -311,6 +312,7 @@ This can only be used in private testing scenarios, as it uses a private faucet 
 
 ```js
 load: /examples/workshop-trust-fund/index.mjs
+md5: 29f9f977d13d9651062bf18288b6c072
 range: 29-33
 ```
 
@@ -509,6 +511,7 @@ If you do this, you should inform your clients that they should pay attention to
 
 ```js
 load: /examples/atomic-swap/index.mjs
+md5: 9e2dd8f8db4ef6e83cc5c95fab50fd80
 range: 30-32
 ```
 
@@ -1018,6 +1021,7 @@ Hashes the value.
 
 ```js
 load: /examples/digest-mod/index.mjs
+md5: 73fef9371959b81f0609bd7622a9eb27
 range: 14-15
 ```
 
