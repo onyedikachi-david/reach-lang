@@ -676,10 +676,10 @@ const processMd = async ({baseConfig, relDir, in_folder, iPath, oPath}) => {
       const line1 = arr[0].replace(/\s+/g, '');
       if (line1.slice(0, 5) == 'load:') {
         spec.load = line1.slice(5);
-        if (arr.length > 1) {
-          const line2 = arr[1].replace(/\s+/g, '');
-          if (line2.slice(0, 6) == 'range:') {
-            spec.range = line2.slice(6);
+        if (arr.length > 2) {
+          const line3 = arr[2].replace(/\s+/g, '');
+          if (line3.slice(0, 6) == 'range:') {
+            spec.range = line3.slice(6);
           }
         }
       }
