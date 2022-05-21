@@ -168,6 +168,19 @@ jobs:
               }
             }]
           }
+  "docs-check-checksums":
+    executor: fake
+    steps:
+    - checkout
+    - workattach
+    - srd_no
+    - run: |
+        curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+        source ~/.profile
+        nvm install --lts
+        npm install -g ts-node
+        echo
+        ts-node scripts/checkChecksums.ts
   "sh-check":
     executor: fake
     steps:
@@ -348,7 +361,9 @@ workflows:
          branches:
            only: master
        requires:
+       - "docs-check-checksums"
        - "docs-render"
+    - "docs-check-checksums"
   build:
     jobs:
     - "sh-check"
